@@ -1,6 +1,8 @@
 # %%
 
 class DriftDetector:
+    """A class used to monitor a single value of a datapoint for drift"""
+
     def __init__(self, detector_name):
         self.name = detector_name
         self.mean = None
@@ -32,17 +34,15 @@ class DriftDetector:
             self.mean_lower_threshold = self.mean - self.threshold
 
         if self.drift_detected():
-            print("Drift detected")
-            print("Retraining model")
+            pass
+            # print("Retraining model")
 
     def drift_detected(self):
         """Detects drift in the monitored data"""
         drift_detected = False
         if self.mean > self.mean_upper_threshold or self.mean < self.mean_lower_threshold:
-            print("Drift detected in", self.name)
-            print("Mean", self.mean)
-            print("Upper threshold",
-                  self.mean_upper_threshold)
+            print(
+                f"Drift detected in {self.name} (rolling average ({self.mean}) exceeded threshold range ({self.mean_lower_threshold}, {self.mean_upper_threshold}))")
             drift_detected = True
         return drift_detected
 

@@ -33,7 +33,7 @@ class DriftingDataset:
         return x, self.mapping(x)
 
     def increase_data_drift(self):
-        self.mean += 0.1
+        self.mean += np.random.normal(self.mean, self.std, self.n_features)
         self.std += 0.1
         self.drift_idx += 1
 
@@ -50,10 +50,14 @@ class DriftingDataset:
         return _()
 
 
-dataset = DriftingDataset()
+if __name__ == "__main__":
 
-for example in dataset:
+    dataset = DriftingDataset()
+
+    for example in dataset:
+        print(example)
+        time.sleep(1)
+
+for idx, example in enumerate(dataset):
     print(example)
     time.sleep(1)
-
-# %%
