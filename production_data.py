@@ -18,7 +18,7 @@ class RealWorldDataStream():
                 for row in self.df:
                     yield pd.DataFrame([row])
                     # sleep for a random amount of time
-                    sleep(normal(0.5, 0.1))
+                    sleep(normal(0, 0.1))
 
         return _()
 
@@ -26,5 +26,6 @@ class RealWorldDataStream():
 if __name__ == "__main__":
     for datapoint in RealWorldDataStream():
         print(datapoint)
+        print(type(datapoint))
         break
 # %%
